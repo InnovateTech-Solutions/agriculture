@@ -34,13 +34,7 @@ class UserRepository extends GetxController {
     return userdata;
   }
 
-  Future<GuidModel> getUserGuideDetails(String email) async {
-    final snapshot =
-        await _db.collection("Guide").where("Email", isEqualTo: email).get();
-    final guideData = snapshot.docs.map((e) => GuidModel.fromSnapshot(e)).first;
-    guidModel = guideData;
-
-    return guidModel; // }
+  // }
 
     // Future<UserModel> getUserGuideDetails(String email) async {
     //   final snapshot =
@@ -52,4 +46,4 @@ class UserRepository extends GetxController {
     //   return userdata;
     // }
   }
-}
+
