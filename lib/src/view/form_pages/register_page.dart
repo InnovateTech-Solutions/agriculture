@@ -113,7 +113,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                     dropdownColor: ColorConst
                         .secScaffoldBackgroundColor, // Set your desired dropdown menu color here
-                    hint: Text(
+                    hint: const Text(
                       'Select an area',
                       style: TextStyle(
                         color: Colors

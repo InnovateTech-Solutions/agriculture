@@ -2,7 +2,7 @@ import 'package:agriculture/src/constant/color.dart';
 import 'package:agriculture/src/getx/profile_controller.dart';
 import 'package:agriculture/src/getx/user_controller.dart';
 import 'package:agriculture/src/model/user_model.dart';
-import 'package:agriculture/src/view/form_pages/add_farm_page.dart';
+import 'package:agriculture/src/view/form_pages/farmregister_page.dart';
 import 'package:agriculture/src/view/intro_page.dart';
 import 'package:agriculture/src/view/user_pages/user_navbar_pages/profile_page/weekly_report.dart';
 import 'package:agriculture/src/widget/text_widget/app_text.dart';
@@ -88,8 +88,8 @@ class ProfilePage extends StatelessWidget {
                                     backgroundColor:
                                         ColorConst.secScaffoldBackgroundColor,
                                     onPressed: () {
-                                      Get.to(
-                                          AddFarmPage(id: userData.idNumber));
+                                      Get.to(FarmRegisterPage(
+                                          id: userData.idNumber));
                                     },
                                     child: Icon(
                                       Icons.add,

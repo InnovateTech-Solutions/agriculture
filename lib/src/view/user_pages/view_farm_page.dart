@@ -32,74 +32,76 @@ class FarmPage extends StatelessWidget {
                     if (snapshot.hasData) {
                       return Container(
                         margin: const EdgeInsets.all(10),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Center(
-                              child: Container(
-                                width: 350,
-                                height: 150,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(20),
-                                    image: DecorationImage(
-                                        image: NetworkImage(farmModel.image),
-                                        fit: BoxFit.cover)),
-                                child: Image.network(
-                                  farmModel.image,
-                                  fit: BoxFit.fill,
+                        child: SingleChildScrollView(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Center(
+                                child: Container(
+                                  width: 350,
+                                  height: 150,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(20),
+                                      image: DecorationImage(
+                                          image: NetworkImage(farmModel.image),
+                                          fit: BoxFit.cover)),
+                                  child: Image.network(
+                                    farmModel.image,
+                                    fit: BoxFit.fill,
+                                  ),
                                 ),
                               ),
-                            ),
-                            headerText(farmModel.farmName),
-                            secText(farmModel.farmArea),
-                            secText(farmModel.farmAddress),
-                            const SizedBox(
-                              height: 50,
-                            ),
-                            headerText("Type of crops"),
-                            Divider(
-                              thickness: 3,
-                              color: ColorConst.iconColor,
-                            ),
-                            SizedBox(
-                              height: 100,
-                              width: 350,
-                              child: ListView.builder(
-                                  scrollDirection: Axis.horizontal,
-                                  itemCount: farmModel.farmingType.length,
-                                  itemBuilder: (context, index) {
-                                    return Container(
-                                      width: 150,
-                                      height: 80,
-                                      margin: const EdgeInsets.all(6),
-                                      decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(20),
-                                          color: ColorConst
-                                              .secScaffoldBackgroundColor),
-                                      child: Center(
-                                        child: Text(
-                                          farmModel.farmingType[index],
-                                          style: GoogleFonts.poppins(
-                                              textStyle: TextStyle(
-                                                  fontSize: 15,
-                                                  color: ColorConst
-                                                      .mainScaffoldBackgroundColor)),
+                              headerText(farmModel.farmName),
+                              secText(farmModel.farmArea),
+                              secText(farmModel.farmAddress),
+                              const SizedBox(
+                                height: 50,
+                              ),
+                              headerText("Type of crops"),
+                              Divider(
+                                thickness: 3,
+                                color: ColorConst.iconColor,
+                              ),
+                              SizedBox(
+                                height: 100,
+                                width: 350,
+                                child: ListView.builder(
+                                    scrollDirection: Axis.horizontal,
+                                    itemCount: farmModel.farmingType.length,
+                                    itemBuilder: (context, index) {
+                                      return Container(
+                                        width: 150,
+                                        height: 80,
+                                        margin: const EdgeInsets.all(6),
+                                        decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(20),
+                                            color: ColorConst
+                                                .secScaffoldBackgroundColor),
+                                        child: Center(
+                                          child: Text(
+                                            farmModel.farmingType[index],
+                                            style: GoogleFonts.poppins(
+                                                textStyle: TextStyle(
+                                                    fontSize: 15,
+                                                    color: ColorConst
+                                                        .mainScaffoldBackgroundColor)),
+                                          ),
                                         ),
-                                      ),
-                                    );
-                                  }),
-                            ),
-                            const SizedBox(
-                              height: 20,
-                            ),
-                            headerText("Other Farm"),
-                            Divider(
-                              thickness: 3,
-                              color: ColorConst.iconColor,
-                            ),
-                            const OtherFarmWidget(),
-                          ],
+                                      );
+                                    }),
+                              ),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              headerText("Other Farm"),
+                              Divider(
+                                thickness: 3,
+                                color: ColorConst.iconColor,
+                              ),
+                              const OtherFarmWidget(),
+                            ],
+                          ),
                         ),
                       );
                     } else if (snapshot.hasError) {

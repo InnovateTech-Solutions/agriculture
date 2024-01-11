@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-void addFarmDialog(BuildContext context) {
+void addFarmDialog(BuildContext context, String id) {
   showDialog(
     context: context,
     builder: (BuildContext context) {
@@ -35,7 +35,9 @@ void addFarmDialog(BuildContext context) {
                       child: ButtonWidget(
                           title: "Yes",
                           onTap: () {
-                            Get.to(const FarmRegisterPage());
+                            Get.to(FarmRegisterPage(
+                              id: id,
+                            ));
                           },
                           containerColor: ColorConst.secScaffoldBackgroundColor,
                           textColor: ColorConst.mainScaffoldBackgroundColor),

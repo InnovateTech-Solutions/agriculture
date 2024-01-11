@@ -124,7 +124,7 @@ class RegisterController extends GetxController {
               colorText: ColorConst.mainScaffoldBackgroundColor,
               backgroundColor: Colors.green);
           // ignore: use_build_context_synchronously
-          addFarmDialog(context);
+          addFarmDialog(context, idNumber.text);
         } else {
           Get.snackbar("ERROR", "Invalid datas",
               snackPosition: SnackPosition.BOTTOM,
