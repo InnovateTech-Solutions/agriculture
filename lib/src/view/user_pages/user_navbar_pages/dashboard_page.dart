@@ -71,9 +71,11 @@ class _DashboardState extends State<Dashboard> {
                             Row(
                               children: [
                                 SizedBox(
-                                  width: 350,
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.95,
                                   height: 300,
                                   child: ListView.separated(
+                                      shrinkWrap: true,
                                       scrollDirection: Axis.horizontal,
                                       itemBuilder: (context, index) {
                                         final name = subCategory[index]['name'];

@@ -2,10 +2,12 @@ import 'package:agriculture/src/constant/color.dart';
 import 'package:agriculture/src/getx/profile_controller.dart';
 import 'package:agriculture/src/getx/user_controller.dart';
 import 'package:agriculture/src/model/user_model.dart';
-import 'package:agriculture/src/view/form_pages/farmregister_page.dart';
+import 'package:agriculture/src/view/form_pages/add_farm_page.dart';
 import 'package:agriculture/src/view/intro_page.dart';
+import 'package:agriculture/src/view/user_pages/user_navbar_pages/profile_page/weekly_report.dart';
 import 'package:agriculture/src/widget/text_widget/app_text.dart';
 import 'package:agriculture/src/widget/user_custom.dart/profile_widget.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -16,18 +18,10 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(ProfileController());
+    final auth = FirebaseAuth.instance;
+
     return SafeArea(
         child: Scaffold(
-            floatingActionButton: FloatingActionButton(
-              backgroundColor: ColorConst.secScaffoldBackgroundColor,
-              onPressed: () {
-                Get.to(const FarmRegisterPage());
-              },
-              child: Icon(
-                Icons.add,
-                color: ColorConst.mainScaffoldBackgroundColor,
-              ),
-            ),
             backgroundColor: ColorConst.mainScaffoldBackgroundColor,
             body: FutureBuilder(
                 future: controller.getUserDataForFarmer(),
@@ -59,7 +53,9 @@ class ProfilePage extends StatelessWidget {
                                                 .secScaffoldBackgroundColor)),
                                   ),
                                   GestureDetector(
-                                      onTap: () {
+                                      onTap: () async {
+                                        await auth.signOut();
+
                                         Get.offAll(const IntroPage());
                                       },
                                       child: Icon(
@@ -75,6 +71,34 @@ class ProfilePage extends StatelessWidget {
                               headerText("Farmer Name: ${userData.name}"),
                               secText("Farmer Address: ${userData.address}"),
                               secText("Farmer Id Number: ${userData.idNumber}"),
+                              Row(
+                                children: [
+                                  headerText("My Weekly Report"),
+                                  IconButton(
+                                    onPressed: () {
+                                      Get.to(AdminWeeklyReportView(
+                                        farmerId: userData.idNumber,
+                                      ));
+                                    },
+                                    icon: const Icon(Icons.article_outlined),
+                                    color: ColorConst.iconColor,
+                                  ),
+                                  const Spacer(),
+                                  FloatingActionButton(
+                                    backgroundColor:
+                                        ColorConst.secScaffoldBackgroundColor,
+                                    onPressed: () {
+                                      Get.to(
+                                          AddFarmPage(id: userData.idNumber));
+                                    },
+                                    child: Icon(
+                                      Icons.add,
+                                      color: ColorConst
+                                          .mainScaffoldBackgroundColor,
+                                    ),
+                                  ),
+                                ],
+                              ),
                               SizedBox(
                                 height: 600,
                                 width: double.infinity,

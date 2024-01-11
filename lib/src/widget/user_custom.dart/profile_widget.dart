@@ -20,94 +20,91 @@ class ProfileWidget extends StatelessWidget {
               if (snapShot.hasData) {
                 final farm = snapShot.data!;
                 return Center(
-                  child: SingleChildScrollView(
-                    scrollDirection: Axis.vertical,
-                    child: Column(
-                      children: [
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        headerText("My Farms"),
-                        Divider(
-                          thickness: 2,
-                          color: ColorConst.iconColor,
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        SizedBox(
-                          width: double.infinity,
-                          height: 650,
-                          child: ListView.separated(
-                              itemBuilder: (context, index) {
-                                final farmName =
-                                    farm[index]['FarmName'].toString();
-                                final farmAddress =
-                                    farm[index]['FarmAddress'].toString();
-                                final farmArea =
-                                    farm[index]['FarmsArea'].toString();
-                                final farmId =
-                                    farm[index]['IdNumber'].toString();
-                                final farmingType = List<String>.from(
-                                    farm[index]['FarmingType']);
-                                final image = farm[index]['Image'];
+                  child: Column(
+                    children: [
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      headerText("My Farms"),
+                      Divider(
+                        thickness: 2,
+                        color: ColorConst.iconColor,
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Expanded(
+                        child: ListView.separated(
+                            shrinkWrap: true,
+                            itemBuilder: (context, index) {
+                              final farmName =
+                                  farm[index]['FarmName'].toString();
+                              final farmAddress =
+                                  farm[index]['FarmAddress'].toString();
+                              final farmArea =
+                                  farm[index]['FarmsArea'].toString();
+                              final farmId = farm[index]['IdNumber'].toString();
+                              final farmingType =
+                                  List<String>.from(farm[index]['FarmingType']);
+                              final image = farm[index]['Image'];
 
-                                return GestureDetector(
-                                  onTap: () {
-                                    Get.to(FarmPage(
-                                        farmModel: FarmModel(
-                                            farmName: farmName,
-                                            farmAddress: farmAddress,
-                                            farmArea: farmArea,
-                                            farmingType: farmingType,
-                                            idNumber: idNumber,
-                                            image: image)));
-                                  },
-                                  child: Container(
-                                    height: 120,
-                                    width: 350,
-                                    decoration: BoxDecoration(
-                                      color: ColorConst
-                                          .mainScaffoldBackgroundColor,
-                                      boxShadow: [
-                                        BoxShadow(
-                                          blurRadius: 10,
-                                          color: Colors.black.withOpacity(.2),
-                                        )
-                                      ],
-                                      borderRadius: BorderRadius.circular(20),
-                                      border: Border.all(
-                                        color: ColorConst
-                                            .secScaffoldBackgroundColor,
-                                        width: 2.0,
-                                      ),
-                                    ),
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          headerText(farmName),
-                                          secText(farmAddress),
-                                          secText(farmArea),
-                                          secText(farmId),
-                                        ],
-                                      ),
+                              return GestureDetector(
+                                onTap: () {
+                                  Get.to(FarmPage(
+                                      farmModel: FarmModel(
+                                          farmName: farmName,
+                                          farmAddress: farmAddress,
+                                          farmArea: farmArea,
+                                          farmingType: farmingType,
+                                          idNumber: idNumber,
+                                          image: image)));
+                                },
+                                child: Container(
+                                  height: 120,
+                                  width: 350,
+                                  decoration: BoxDecoration(
+                                    color:
+                                        ColorConst.mainScaffoldBackgroundColor,
+                                    boxShadow: [
+                                      BoxShadow(
+                                        blurRadius: 10,
+                                        color: Colors.black.withOpacity(.2),
+                                      )
+                                    ],
+                                    borderRadius: BorderRadius.circular(20),
+                                    border: Border.all(
+                                      color:
+                                          ColorConst.secScaffoldBackgroundColor,
+                                      width: 2.0,
                                     ),
                                   ),
-                                );
-                              },
-                              scrollDirection: Axis.vertical,
-                              separatorBuilder: (context, index) {
-                                return const SizedBox(
-                                  height: 20,
-                                );
-                              },
-                              itemCount: farm.length),
-                        ),
-                      ],
-                    ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        headerText(farmName),
+                                        secText(farmAddress),
+                                        secText(farmArea),
+                                        secText(farmId),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              );
+                            },
+                            separatorBuilder: (context, index) {
+                              return const SizedBox(
+                                height: 20,
+                              );
+                            },
+                            itemCount: farm.length),
+                      ),
+                      const SizedBox(
+                        height: 100,
+                      )
+                    ],
                   ),
                 );
               } else if (snapShot.hasError) {

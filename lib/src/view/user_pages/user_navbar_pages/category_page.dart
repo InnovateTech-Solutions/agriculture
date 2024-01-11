@@ -57,6 +57,8 @@ class CategoriesPage extends StatelessWidget {
                                   height: 200,
                                   child: ListView.separated(
                                     scrollDirection: Axis.horizontal,
+                                    physics:
+                                        const NeverScrollableScrollPhysics(),
                                     shrinkWrap: true,
                                     itemCount: categories.length,
                                     itemBuilder: ((context, index) {

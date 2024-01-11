@@ -4,7 +4,7 @@ import 'package:agriculture/src/view/user_pages/user_navbar_pages/category_page.
 import 'package:agriculture/src/view/user_pages/user_navbar_pages/dashboard_page.dart';
 import 'package:agriculture/src/view/user_pages/user_navbar_pages/disease_page.dart';
 import 'package:agriculture/src/view/user_pages/user_navbar_pages/guid_page.dart';
-import 'package:agriculture/src/view/user_pages/user_navbar_pages/profile_page.dart';
+import 'package:agriculture/src/view/user_pages/user_navbar_pages/profile_page/profile_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

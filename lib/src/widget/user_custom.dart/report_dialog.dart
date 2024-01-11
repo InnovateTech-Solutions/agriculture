@@ -79,17 +79,18 @@ class _ReportDialogState extends State<ReportDialog> {
                   ),
                   const Spacer(),
                   ButtonWidget(
-                      title: "Add",
-                      onTap: () {
-                        final email = _authRepo.firebaseUser.value?.email;
-                        controller.addReport(ReportModel(
-                            email: email!,
-                            farmerName: controller.email.text.trim(),
-                            message: controller.message.text.trim()));
-                        clearText();
-                      },
-                      containerColor: ColorConst.secScaffoldBackgroundColor,
-                      textColor: ColorConst.mainScaffoldBackgroundColor)
+                    title: "Add",
+                    onTap: () {
+                      final email = _authRepo.firebaseUser.value?.email;
+                      controller.addReport(ReportModel(
+                          email: widget.guideName,
+                          farmerName: email!,
+                          message: controller.message.text.trim()));
+                      clearText();
+                    },
+                    containerColor: ColorConst.secScaffoldBackgroundColor,
+                    textColor: ColorConst.mainScaffoldBackgroundColor,
+                  )
                 ],
               ),
             ),
