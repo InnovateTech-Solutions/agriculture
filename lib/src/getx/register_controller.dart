@@ -26,6 +26,19 @@ class RegisterController extends GetxController {
     return null;
   }
 
+  String selectedArea = 'Amman'; // Default value
+
+  final List<String> areas = [
+    'Amman',
+    'Irbid',
+    'Madaba',
+    'Ajloun',
+    'Jerash',
+    'Ma\'an',
+    'Karak',
+    'Ghor al-Urdun',
+  ];
+
   validEmail(String? email) {
     if (GetUtils.isEmail(email!)) {
       return null;

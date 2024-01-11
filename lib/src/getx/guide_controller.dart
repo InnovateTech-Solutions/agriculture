@@ -55,9 +55,9 @@ class GuideController extends GetxController {
     return guide;
   }
 
-  Future<List<GuidModel>> fetchGuideDetails() async {
+  Future<List<GuidModel>> fetchGuideDetails(String area) async {
     final querySnapshot =
-        await _db.collection('Guide').where('Area', isEqualTo: "Amman").get();
+        await _db.collection('Guide').where('Area', isEqualTo: area).get();
 
     return querySnapshot.docs
         .map((doc) => GuidModel.fromSnapshot(doc))

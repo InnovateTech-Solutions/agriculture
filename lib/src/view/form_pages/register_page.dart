@@ -81,18 +81,46 @@ class _RegisterPageState extends State<RegisterPage> {
                           inputFormat: null,
                           controller: controller.idNumber)),
                   const SizedBox(height: 40),
-                  FormWidget(
+                  DropdownButton<String>(
+                    value: controller.selectedArea,
+                    onChanged: (String? newValue) {
+                      setState(() {
+                        controller.selectedArea = newValue!;
+                      });
+                    },
+                    items: controller.areas
+                        .map<DropdownMenuItem<String>>((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(
+                          value,
+                          style: TextStyle(
+                            color: ColorConst.mainScaffoldBackgroundColor,
+                            fontSize: 20,
+                          ),
+                        ),
+                      );
+                    }).toList(),
+                    isExpanded: true,
+                    style: TextStyle(
                       color: ColorConst.mainScaffoldBackgroundColor,
-                      login: FormModel(
-                          enableText: false,
-                          hintText: "ADDRESS",
-                          invisible: false,
-                          validator: (address) =>
-                              controller.validAddress(address),
-                          type: TextInputType.text,
-                          onChange: null,
-                          inputFormat: null,
-                          controller: controller.address)),
+                      fontSize: 20,
+                    ),
+                    underline: Container(
+                      height: 2,
+                      color: ColorConst
+                          .mainScaffoldBackgroundColor, // Set your desired underline color here
+                    ),
+                    dropdownColor: ColorConst
+                        .secScaffoldBackgroundColor, // Set your desired dropdown menu color here
+                    hint: Text(
+                      'Select an area',
+                      style: TextStyle(
+                        color: Colors
+                            .white, // Set your desired hint text color here
+                      ),
+                    ),
+                  ),
                   const SizedBox(height: 40),
                   FormWidget(
                       color: ColorConst.mainScaffoldBackgroundColor,
@@ -130,7 +158,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                 name: controller.name.text,
                                 email: controller.email.text,
                                 idNumber: controller.idNumber.text,
-                                address: controller.address.text,
+                                address: controller.selectedArea,
                                 password: controller.password.text),
                             context);
                       },

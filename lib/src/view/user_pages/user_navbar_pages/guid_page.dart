@@ -1,10 +1,10 @@
-import 'package:agriculture/src/getx/guide_controller.dart';
-import 'package:agriculture/src/model/guide_model.dart';
-import 'package:agriculture/src/view/user_pages/guidedetail_page.dart';
+import 'package:agriculture/src/getx/profile_controller.dart';
+import 'package:agriculture/src/model/user_model.dart';
 import 'package:agriculture/src/view/user_pages/view_all_video.dart';
 import 'package:agriculture/src/widget/text_widget/app_text.dart';
 import 'package:agriculture/src/widget/user_custom.dart/dashboard_widget/dashboard_title.dart';
 import 'package:agriculture/src/widget/user_custom.dart/dashboard_widget/video_widget.dart';
+import 'package:agriculture/src/widget/user_custom.dart/guide_image_name.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -15,77 +15,41 @@ class GuidPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(GuideController());
+    final controller = Get.put(ProfileController());
     return SafeArea(
       child: Scaffold(
           body: FutureBuilder(
-              future: controller.fetchGuideDetails(),
+              future: controller.getUserDataForFarmer(),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return Container();
                 } else if (snapshot.hasError) {
                   return Container();
                 } else {
-                  final guide = snapshot.data;
+                  UserModel userData = snapshot.data as UserModel;
 
                   return Padding(
                     padding: const EdgeInsets.all(18.0),
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Center(
                           child: headerText("Guide"),
                         ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SizedBox(
+                              height: 300,
+                              width: 250,
+                              child: GuideImageName(
+                                area: userData.address,
+                              ),
+                            ),
+                          ],
+                        ),
                         const SizedBox(
                           height: 20,
-                        ),
-                        Center(
-                          child: SizedBox(
-                            height: 300,
-                            width: 250,
-                            child: ListView.builder(
-                              scrollDirection: Axis.horizontal,
-                              itemCount: 1,
-                              itemBuilder: (BuildContext context, int index) {
-                                final email = guide![index].email;
-                                final name = guide[index].name;
-                                final area = guide[index].area;
-                                final description = guide[index].description;
-                                final image = guide[index].image;
-                                return GestureDetector(
-                                  onTap: () {
-                                    Get.to(GuideDetailPage(
-                                        guidModel: GuidModel(
-                                            password: "",
-                                            userType: "Guide",
-                                            email: email,
-                                            name: name,
-                                            area: area,
-                                            description: description,
-                                            image: image)));
-                                  },
-                                  child: Column(
-                                    children: [
-                                      Container(
-                                        height: 200,
-                                        width: 250,
-                                        decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(20),
-                                            image: DecorationImage(
-                                                image: NetworkImage(image),
-                                                fit: BoxFit.cover)),
-                                      ),
-                                      const SizedBox(
-                                        height: 5,
-                                      ),
-                                      secText(name)
-                                    ],
-                                  ),
-                                );
-                              },
-                            ),
-                          ),
                         ),
                         headerTitle("Popular video", () {
                           Get.to(const ViewViedo());
