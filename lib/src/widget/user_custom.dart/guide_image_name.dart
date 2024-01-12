@@ -24,7 +24,7 @@ class GuideImageName extends StatelessWidget {
           } else {
             final guide = snapshot.data;
 
-            return guide == null
+            return guide != null
                 ? Center(
                     child: ListView.builder(
                       scrollDirection: Axis.horizontal,
