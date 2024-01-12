@@ -24,11 +24,11 @@ class GuideImageName extends StatelessWidget {
           } else {
             final guide = snapshot.data;
 
-            return guide != null
-                ? Center(
-                    child: ListView.builder(
+            return Center(
+              child: guide != null
+                  ? ListView.builder(
                       scrollDirection: Axis.horizontal,
-                      itemCount: guide!.length,
+                      itemCount: guide.length,
                       itemBuilder: (BuildContext context, int index) {
                         final email = guide[index].email;
                         final name = guide[index].name;
@@ -66,16 +66,15 @@ class GuideImageName extends StatelessWidget {
                           ),
                         );
                       },
+                    )
+                  : Container(
+                      height: 200,
+                      width: 250,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: Colors.amberAccent),
                     ),
-                  )
-                : Center(
-                    child: Text(
-                    "There is no Guide Assign For This farm",
-                    textAlign: TextAlign.center,
-                    style: GoogleFonts.poppins(
-                        textStyle: TextStyle(
-                            fontSize: 18, color: ColorConst.mainTextColor)),
-                  ));
+            );
           }
         });
   }
