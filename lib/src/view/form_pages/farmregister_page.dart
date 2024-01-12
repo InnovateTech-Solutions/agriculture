@@ -164,7 +164,7 @@ class _FarmRegisterPageState extends State<FarmRegisterPage> {
                           farmName: registerCntroller.farmName.text.trim(),
                           farmAddress:
                               registerCntroller.farmAddress.text.trim(),
-                          farmArea: registerCntroller.area.text.trim(),
+                          farmArea: controller.selectedArea,
                           farmingType: selectedContainers,
                           idNumber: widget.id,
                         ));

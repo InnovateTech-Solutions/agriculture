@@ -1,6 +1,5 @@
 import 'package:agriculture/src/constant/color.dart';
 import 'package:agriculture/src/getx/dashboard_controller.dart';
-import 'package:agriculture/src/getx/guide_controller.dart';
 import 'package:agriculture/src/model/category_model.dart';
 import 'package:agriculture/src/model/subcategory_model.dart';
 import 'package:agriculture/src/view/user_pages/category_pages/plant_page.dart';
@@ -25,7 +24,6 @@ class _DashboardState extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
     final dashboardController = Get.put(DashboardController());
-    final ccc = Get.put(GuideController());
 
     return SafeArea(
         child: Scaffold(

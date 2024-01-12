@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
 
+// ignore: must_be_immutable
 class WeeklyReportDialog extends StatefulWidget {
   WeeklyReportDialog(
       {super.key,
